@@ -30,7 +30,8 @@ class Produkt(object):
         tid = self.totaltid()
         effektivitetsfaktor = float(vinst)/float(tid)
         return effektivitetsfaktor
-        
+
+#Lista over alla (las fa) produkter        
 KGlass = Produkt(352,["Sirap","KJos"],180,0)
 KJos = Produkt(216,["KBar","KBar"],150,0)
 Mjolk = Produkt(32,["KoFoder"],60,0)
@@ -63,7 +64,19 @@ Pumpa = Produkt(32,None,180,0)
 PumpaPaj = Produkt(158,["Agg","Pumpa","Pumpa","Pumpa","Vete","Vete"],120,0)
 
 my_dicts = {"KGlass":KGlass, "KJos":KJos, "Mjolk":Mjolk, "KoFoder":KoFoder, "Soya":Soya, "Majs":Majs, "Sirap":Sirap, "Socker":Socker, "KBar":KBar, "Vete":Vete, "Agg":Agg, "HFoder":HFoder, "Brod":Brod, "Gradde":Gradde, "MajsBrod":MajsBrod, "BrunSocker":BrunSocker, "Popcorn":Popcorn, "Morot":Morot, "Smor":Smor, "Pannkakor":Pannkakor, "GFoder":GFoder, "Bacon":Bacon, "Kakor":Kakor, "BaconAAgg":BaconAAgg, "Ost":Ost, "VitSocker":VitSocker, "MorotsPaj":MorotsPaj, "Pumpa":Pumpa, "PumpaPaj":PumpaPaj}
+Prisvard = "inget"
+Effektivast = "inget"
+Prisvard_pengar = 0
+Effektivast_pengar_per_tid = 0
 for i in my_dicts.iterkeys():
+    if my_dicts[i].totalpris() > Prisvard_pengar:
+        Prisvard = i
+        Prisvard_pengar = my_dicts[i].totalpris()
+    if my_dicts[i].effektivitetsfaktor() > Effektivast_pengar_per_tid:
+        Effektivast = i
+        Effektivast_pengar_per_tid = my_dicts[i].effektivitetsfaktor()
     print i ,"    \t"," vinst ", my_dicts[i].totalpris(), "\t"," tid ", my_dicts[i].totaltid(), "\t" , " effektivitet ", my_dicts[i].effektivitetsfaktor()
                 
-            
+                
+print "Prisvardast: ", Prisvard
+print "Effektivast: ", Effektivast
